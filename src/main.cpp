@@ -2,5 +2,6 @@
 
 int main(){
     debugger::setDebug(true);
-    
+    puts("test");
 }
+

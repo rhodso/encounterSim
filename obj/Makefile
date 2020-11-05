@@ -17,4 +17,4 @@ debugger.o:	../src/debugger.cpp
 	g++ -c ../src/debugger.cpp -I../headers
 
 clean:
-	rm *.o && rm ../encounterSim
+	rm *.o -fv && rm ../encounterSim -fv
