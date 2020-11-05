@@ -3,3 +3,6 @@ encounterSim:
 
 clean:
 	cd obj && make clean
+
+run:
+	./encounterSim
