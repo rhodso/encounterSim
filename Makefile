@@ -1,2 +1,5 @@
-SUBDIRS = src
-dist_doc_DATA = README
+encounterSim:
+	cd obj && $(MAKE)
+
+clean:
+	cd obj && make clean

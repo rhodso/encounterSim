@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include <main.h>
 
 int main(){
-    puts("Hello world");
+    debugger::setDebug(true);
+    
 }
