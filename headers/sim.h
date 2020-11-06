@@ -5,12 +5,13 @@
 //Includes
 #include <entity.h>
 #include <debugger.h>
-
+#include <algorithm>
 
 class sim {
 	public:
 		//Constructor and Destructor
 		sim();
+		sim(std::vector<entity*> _entityList);
 		~sim();
 
 		//Getters and Setters

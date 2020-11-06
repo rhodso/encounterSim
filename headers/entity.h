@@ -17,8 +17,14 @@ class entity {
 		entity(int _team, int _cr, int _hp, int _ac, int _xp, int _str, int _dex, int _con, int _wis, int _cha);
 		~entity();
 
+		//Operators
+		bool operator< (const entity &other) const {
+			return initiative < other.initiative;
+		}
+
 		//Getters and Setters
 		int getTeam();
+		int getInitiative();
 		int getCr();
 		int getHp();
 		int getAc();
@@ -41,6 +47,7 @@ class entity {
 		void setCha( int _cha );
 
 		//Other methods
+		void rollInitiative();
 		void addAction(action _a);
 		int rollHP(int _diceToRoll, int _diceType, int _modifier);
 		int attack(std::vector<std::vector<entity*>> teams);
@@ -48,6 +55,7 @@ class entity {
 	private:
 		//Variables
 		int team; //members of the same team won't attack eachother
+		int initiative;
 		int cr;
 		int hp;
 		int ac;

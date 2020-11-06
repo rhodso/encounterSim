@@ -67,6 +67,9 @@ void entity::setWis( int _wis){ wis = _wis; }
 void entity::setCha( int _cha){ cha = _cha; }
 
 //Other methods
+void entity::rollInitiative(){
+    initiative = roll::_rtd(1,20);
+}
 void entity::addAction(action _a){ actions.push_back(_a); }
 int entity::rollHP(int _diceToRoll, int _diceType, int _modifier){ debugger::log("Rolling to hit"); return roll::_rtd(_diceToRoll, _diceType, _modifier); }
 int entity::attack(std::vector<std::vector<entity*>> teams){
