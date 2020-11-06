@@ -6,3 +6,4 @@
 
 entity p1;
 entity p2;
+sim s;

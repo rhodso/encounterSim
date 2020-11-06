@@ -72,7 +72,7 @@ void entity::rollInitiative(){
 }
 void entity::addAction(action _a){ actions.push_back(_a); }
 int entity::rollHP(int _diceToRoll, int _diceType, int _modifier){ debugger::log("Rolling to hit"); return roll::_rtd(_diceToRoll, _diceType, _modifier); }
-int entity::attack(std::vector<std::vector<entity*>> teams){
+void entity::attack(std::vector<std::vector<entity*>> teams){
     debugger::log("I am on team " + std::to_string(this->getTeam()));
 
     std::vector<entity*> targets;
@@ -86,11 +86,13 @@ int entity::attack(std::vector<std::vector<entity*>> teams){
             continue;
         } else { //Else add to a list of targets
             for( entity* e : t){
-                targets.push_back(e);
+                if(e->getHp() > 0){ //Only target entities if not dead
+                    targets.push_back(e);
+                }
             }
         }
     }
-
+    debugger::log("Got list of targets, size = " + std::to_string(targets.size()));
     //Choose a random target
     entity* target = targets[roll::_rtd(1, targets.size())];
     debugger::log("Target found, team" + std::to_string(target->getTeam()));
@@ -111,13 +113,10 @@ int entity::attack(std::vector<std::vector<entity*>> teams){
     debugger::log("Action selected. Decremented useCount");
     
     //Roll to hit
-    if(selectedAction->rollHit() > target->getAc()){
+    if(selectedAction->rollHit() >= target->getAc()){
         debugger::log("Attack hits, rolling damage");
         int dmg = selectedAction->rollDamage();
         debugger::log("Attack does " + std::to_string(dmg));
-        return dmg;        
-    } else {
-        debugger::log("Attack misses");
-        return 0;
-    }
+        target->setHp(target->getHp() - dmg);
+    } else { debugger::log("Attack misses"); }
 }

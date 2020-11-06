@@ -50,7 +50,7 @@ class entity {
 		void rollInitiative();
 		void addAction(action _a);
 		int rollHP(int _diceToRoll, int _diceType, int _modifier);
-		int attack(std::vector<std::vector<entity*>> teams);
+		void attack(std::vector<std::vector<entity*>> teams);
 
 	private:
 		//Variables

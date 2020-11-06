@@ -40,6 +40,9 @@ void sim::setEntityList( std::vector<entity*> _entityList){ entityList = _entity
 void sim::setTeams( std::vector<std::vector<entity*>> _teams){ teams = _teams; }
 
 //Other methods
+void sim::addToEntityList(entity* _e){
+    entityList.push_back(_e);
+}
 void sim::rollInitiative(){
     debugger::log("Started rolling intiative");
     
@@ -58,6 +61,48 @@ void sim::rollInitiative(){
 
     debugger::log("Finished rolling intiative");
 }
-int sim::startEncounter(){
-
+int sim::doEncounter(){
+    debugger::log("Started encounter");
+    rollInitiative();
+    while(teamWon == -1){
+        debugger::log("Check if anyone's won");
+        //Check for win
+        int teamsLeft = teams.size();
+        for(std::vector<entity*> team : teams){
+            bool isDead = true;
+            for(entity* e : team){
+                if(e->getHp() > 0){
+                    isDead = false;
+                    break;
+                }
+            }
+            if(isDead){
+                teamsLeft--;
+            }
+        }
+        if(teamsLeft == 1){
+            //Need to find winner
+            for(std::vector<entity*> team : teams){
+                int testTeam = -1;
+                for(entity* e : team){
+                    if(e->getHp() > 0){
+                        testTeam = e->getTeam();
+                        break;
+                    }
+                }
+            debugger::log("They have");
+            return testTeam;
+        }
+        } else {
+            debugger::log("They haven't, calculating damage");
+            //Do damage
+            for(entity* e : entityList){
+                if(e->getHp() > 0){
+                    e->attack(teams);
+                }
+            }
+        }
+    }
+    //This shouldn't happen, but in case it does then it's here to prevent the bad things from happening
+    return -1;
 }

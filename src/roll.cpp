@@ -36,6 +36,7 @@ int roll::rtd(){
     //Create number to store the result
     int result = 0;
     debugger::log("Rolling...");
+    debugger::log("diceToRoll = " + std::to_string(diceToRoll) + " diceType = " + std::to_string(diceType) + " modifier = " + std::to_string(modifier));
     for(int i = 0; i < diceToRoll; i++){ //Add rolls to result sequentially
         int r = (rand() % diceType) + 1;
         result += r;
@@ -45,7 +46,6 @@ int roll::rtd(){
     debugger::log("Result = " + std::to_string(result) + " + " + std::to_string(modifier) + " makes " + std::to_string((result + modifier)));
     return result + modifier;
 }
-
 int roll::_rtd(int _diceToRoll, int _diceType){
     //Create a temporary object to roll
     roll r = roll(_diceToRoll, _diceType, 0);

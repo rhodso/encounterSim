@@ -22,13 +22,14 @@ class sim {
 		void setTeams( std::vector<std::vector<entity*>> _teams );
 
 		//Other methods
+		void addToEntityList(entity* _e);
 		void rollInitiative();
-		int startEncounter();
+		int doEncounter();
 
 	private:
 		//Variables
 		std::vector<entity*> entityList;
 		std::vector<std::vector<entity*>> teams;
-
+		int teamWon = -1;
 };
 #endif
