@@ -6,11 +6,15 @@
 #include <debugger.h>
 #include <action.h>
 #include <roll.h>
+#include <vector>
 
 class entity {
 	public:
 		//Constructor and Destructor
 		entity();
+		entity(int _team, int _cr, int _hp, int _ac);
+		entity(int _team, int _cr, int _hp, int _ac, int _xp);
+		entity(int _team, int _cr, int _hp, int _ac, int _xp, int _str, int _dex, int _con, int _wis, int _cha);
 		~entity();
 
 		//Getters and Setters
@@ -37,8 +41,9 @@ class entity {
 		void setCha( int _cha );
 
 		//Other methods
+		void addAction(action _a);
 		int rollHP(int _diceToRoll, int _diceType, int _modifier);
-		int attack();
+		int attack(std::vector<std::vector<entity*>> teams);
 
 	private:
 		//Variables
@@ -52,6 +57,6 @@ class entity {
 		int con;
 		int wis;
 		int cha;
-
+		std::vector<action> actions;
 };
 #endif

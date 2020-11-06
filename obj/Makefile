@@ -1,5 +1,5 @@
-encounterSim:	main.o roll.o action.o entity.o debugger.o
-	g++ -o ../encounterSim -I../headers main.o roll.o action.o entity.o debugger.o
+encounterSim:	main.o roll.o action.o entity.o debugger.o sim.o
+	g++ -o ../encounterSim -I../headers main.o roll.o action.o entity.o debugger.o sim.o
 
 main.o:	../src/main.cpp
 	g++ -c ../src/main.cpp -I../headers
@@ -15,6 +15,9 @@ entity.o:	../src/entity.cpp
 
 debugger.o:	../src/debugger.cpp
 	g++ -c ../src/debugger.cpp -I../headers
+
+sim.o: ../src/sim.cpp
+	g++ -c ../src/sim.cpp -I../headers
 
 clean:
 	rm *.o -fv && rm ../encounterSim -fv

@@ -16,11 +16,14 @@ class action {
 		//Getters and Setters
 		roll getHit();
 		roll getDamage();
+		int getUseCount();
 
 		void setHit( roll _hit );
 		void setDamage( roll _damage );
+		void setUseCount();
 
 		//Other methods
+		void decrementUseCount();
 		int rollHit();
 		int rollDamage();
 
@@ -28,5 +31,6 @@ class action {
 		//Variables
 		roll hit;
 		roll damage;
+		int useCount;
 };
 #endif

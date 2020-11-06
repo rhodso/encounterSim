@@ -14,10 +14,18 @@ action::~action(){}
 //Getters and Setters
 roll action::getHit(){ return hit; }
 roll action::getDamage(){ return damage; }
+int action::getUseCount(){ return useCount; }
 
 void action::setHit( roll _hit){ hit = _hit; }
 void action::setDamage( roll _damage){ damage = _damage; }
 
 //Other methods
-int action::rollHit(){ debugger::log("Rolling to hit"); return hit.rtd(); }
-int action::rollDamage(){ debugger::log("Rolling damage"); return damage.rtd(); }
+void action::decrementUseCount(){ useCount--; }
+int action::rollHit(){ 
+    debugger::log("Rolling to hit"); 
+    return hit.rtd(); 
+}
+int action::rollDamage(){ 
+    debugger::log("Rolling damage"); 
+    return damage.rtd(); 
+}
