@@ -2,7 +2,10 @@
 
 int main(){
     debugger::setDebug(true);
-    debugger::log("Starting...");
+    debugger::logIgnore("Starting...");
+    //create sim
+    s = sim();
+    
     //p1 - me
     p1 = entity(0, 1, 18, 11);
     p1.addAction(action(roll(1, 20), roll(1, 8, +2)));
@@ -18,9 +21,7 @@ int main(){
     s.addToEntityList(&p2);
     
     int res = s.doEncounter();
-    std::cout << "*************************";
-    std::cout << "Winner is team " + res;
-    std::cout << "*************************";
+    debugger::logIgnore("Winner is team " + std::to_string(res));
 
     return 0;
 }

@@ -1,7 +1,8 @@
-#include <stdio.h>
 #include <debugger.h>
 #include <entity.h>
 #include <sim.h>
+#include <stdio.h>
+
 #include <thread>
 
 entity p1;
