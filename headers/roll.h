@@ -10,7 +10,8 @@ class roll {
 	public:
 		//Constructor and Destructor
 		roll();
-		roll(int _diceToRoll, int _diceType, int _modifier = 0);
+		roll(int _diceToRoll, int _diceType); //Modifier defaults to 0 if left unspecified
+		roll(int _diceToRoll, int _diceType, int _modifier);
 		~roll();
 
 		//Getters and Setters
@@ -24,6 +25,9 @@ class roll {
 
 		//Other methods
 		int rtd();
+		
+		//Methods to roll the dice without creating object. Modifier defaults to 0 if left unspecified
+		static int _rtd(int _diceToRoll, int _diceType);
 		static int _rtd(int _diceToRoll, int _diceType, int _modifier);
 
 	private:

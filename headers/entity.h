@@ -14,6 +14,7 @@ class entity {
 		~entity();
 
 		//Getters and Setters
+		int getTeam();
 		int getCr();
 		int getHp();
 		int getAc();
@@ -24,6 +25,7 @@ class entity {
 		int getWis();
 		int getCha();
 
+		void setTeam( int _team);
 		void setCr( int _cr );
 		void setHp( int _hp );
 		void setAc( int _ac );
@@ -40,6 +42,7 @@ class entity {
 
 	private:
 		//Variables
+		int team; //members of the same team won't attack eachother
 		int cr;
 		int hp;
 		int ac;

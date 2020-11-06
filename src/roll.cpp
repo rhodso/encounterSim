@@ -8,6 +8,12 @@
 roll::roll(){
     srand(time(NULL)); // Seed the RNG
 }
+roll::roll(int _diceToRoll, int _diceType){
+    srand(time(NULL)); //Seed the RNG
+    diceToRoll = _diceToRoll;
+    diceType = _diceType;
+    modifier = 0;
+}
 roll::roll(int _diceToRoll, int _diceType, int _modifier){
     srand(time(NULL)); // Seed the RNG
     diceToRoll = _diceToRoll;
@@ -40,6 +46,11 @@ int roll::rtd(){
     return result + modifier;
 }
 
+int roll::_rtd(int _diceToRoll, int _diceType){
+    //Create a temporary object to roll
+    roll r = roll(_diceToRoll, _diceType, 0);
+    return r.rtd();
+}
 int roll::_rtd(int _diceToRoll, int _diceType, int _modifier){
     //Create a temporary object to roll
     roll r = roll(_diceToRoll, _diceType, _modifier);

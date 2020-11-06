@@ -2,6 +2,12 @@
 
 int main(){
     debugger::setDebug(true);
-    puts("test");
+    
+    //p1 - me
+
+
+    //p2 - fire snake
+    
+
 }
 

@@ -8,6 +8,7 @@ entity::entity(){}
 entity::~entity(){}
 
 //Getters and Setters
+int entity::getTeam(){ return team; }
 int entity::getCr(){ return cr; }
 int entity::getHp(){ return hp; }
 int entity::getAc(){ return ac; }
@@ -18,6 +19,7 @@ int entity::getCon(){ return con; }
 int entity::getWis(){ return wis; }
 int entity::getCha(){ return cha; }
 
+void entity::setTeam( int _team){ team = _team; }
 void entity::setCr( int _cr){ cr = _cr; }
 void entity::setHp( int _hp){ hp = _hp; }
 void entity::setAc( int _ac){ ac = _ac; }
