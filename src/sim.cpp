@@ -6,7 +6,29 @@
 //Constructor and Destructor
 sim::sim(){}
 sim::sim(std::vector<entity*> _entityList){
-    
+    debugger::log("Started buidling teams");
+
+    //Build teams list from entityList
+    int numberOfTeams = 0;
+    for(entity* e : entityList){
+        if(numberOfTeams < e->getTeam()){
+            numberOfTeams = e->getTeam();
+        }
+    }
+
+    //Add teams to vector
+    for(int i = 0; i < numberOfTeams; i++){
+        std::vector<entity*> tmp;
+        teams.push_back(tmp);
+    }
+
+    //Sort entities into team vector
+    for(entity* e : entityList){
+        teams[e->getTeam()].push_back(e);
+    }
+
+    debugger::log("Finished buidling teams");
+
 }
 sim::~sim(){}
 

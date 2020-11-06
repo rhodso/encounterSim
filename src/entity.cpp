@@ -79,6 +79,9 @@ int entity::attack(std::vector<std::vector<entity*>> teams){
     //For all the teams
     for(std::vector<entity*> t : teams){
         //If the entity is on my team, then don't target them
+        if(t.size() == 0){ //Skip team if empty for some reason
+            continue;
+        }
         if(t[0]->getTeam() == this->getTeam()){
             continue;
         } else { //Else add to a list of targets
