@@ -6,17 +6,13 @@
 #include <random>
 
 // Constructor and Destructor
-roll::roll() {
-  srand(time(NULL));  // Seed the RNG
-}
+roll::roll() {}
 roll::roll(int _diceToRoll, int _diceType) {
-  srand(time(NULL));  // Seed the RNG
   diceToRoll = _diceToRoll;
   diceType = _diceType;
   modifier = 0;
 }
 roll::roll(int _diceToRoll, int _diceType, int _modifier) {
-  srand(time(NULL));  // Seed the RNG
   diceToRoll = _diceToRoll;
   diceType = _diceType;
   modifier = _modifier;

@@ -68,7 +68,10 @@ void entity::setWis(int _wis) { wis = _wis; }
 void entity::setCha(int _cha) { cha = _cha; }
 
 // Other methods
-void entity::rollInitiative() { initiative = roll::_rtd(1, 20); }
+void entity::rollInitiative() {
+  initiative = roll::_rtd(1, 20);
+}  // TODO For some reason it's rolling 1's on initiative so I don't know why
+   // that's happening as it should be rolling 20's
 void entity::addAction(action _a) { actions.push_back(_a); }
 int entity::rollHP(int _diceToRoll, int _diceType, int _modifier) {
   debugger::log("Rolling to hit");
@@ -102,8 +105,8 @@ void entity::attack(std::vector<std::vector<entity*>> teams) {
 
   debugger::log("Got list of targets, size = " +
                 std::to_string(targets.size()));
-  entity* target;
 
+  entity* target;
   if (targets.size() < 2) {
     debugger::log("Targets less than 2, choosing the first available target");
     target = targets[0];
