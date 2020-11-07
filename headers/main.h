@@ -7,4 +7,5 @@
 
 entity p1;
 entity p2;
+std::vector<entity> entityList;
 sim s;

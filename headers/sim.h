@@ -23,6 +23,8 @@ class sim {
   void setTeams(std::vector<std::vector<entity*>> _teams);
 
   // Other methods
+  void clearEntityList();
+  void clearTeamsList();
   void setupTeams();
   void addToEntityList(entity* _e);
   void rollInitiative();

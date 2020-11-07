@@ -5,7 +5,13 @@
 
 // Constructor and Destructor
 sim::sim() {}
-sim::sim(std::vector<entity *> _entityList) { entityList = _entityList; }
+sim::sim(std::vector<entity *> _entityList) {
+  // Make a copy of the vector so that multiple simulations won't affect it
+  // Also means we can mutex later
+  for (int i = 0; i < _entityList.size(); i++) {
+    entityList.push_back(_entityList[i]);
+  }
+}
 sim::~sim() {}
 
 // Getters and Setters
@@ -20,6 +26,8 @@ void sim::setTeams(std::vector<std::vector<entity *>> _teams) {
 }
 
 // Other methods
+void sim::clearEntityList() { entityList.clear(); }
+void sim::clearTeamsList() { teams.clear(); }
 void sim::setupTeams() {
   debugger::log("Started buidling teams");
 

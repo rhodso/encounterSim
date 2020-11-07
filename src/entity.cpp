@@ -119,7 +119,7 @@ void entity::attack(std::vector<std::vector<entity*>> teams) {
     target = targets[0];
   } else {
     // Choose a random target
-    target = targets[roll::_rtd(1, targets.size())];
+    target = targets[roll::_rtd(1, targets.size()) - 1];
   }
 
   debugger::log("Target found, team " + std::to_string(target->getTeam()));
