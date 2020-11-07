@@ -4,7 +4,10 @@
 #include <entity.h>
 
 // Constructor and Destructor
-entity::entity() { updateCount(); }
+entity::entity() {
+  // Base constructor is always called, update count here
+  updateCount();
+}
 entity::entity(int _team, int _cr, int _hp, int _ac) {
   team = _team;
   cr = _cr;
@@ -16,7 +19,6 @@ entity::entity(int _team, int _cr, int _hp, int _ac) {
   con = 0;
   wis = 0;
   cha = 0;
-  updateCount();
 }
 entity::entity(int _team, int _cr, int _hp, int _ac, int _xp) {
   team = _team;
@@ -29,7 +31,6 @@ entity::entity(int _team, int _cr, int _hp, int _ac, int _xp) {
   con = 0;
   wis = 0;
   cha = 0;
-  updateCount();
 }
 entity::entity(int _team, int _cr, int _hp, int _ac, int _xp, int _str,
                int _dex, int _con, int _wis, int _cha) {
@@ -43,7 +44,6 @@ entity::entity(int _team, int _cr, int _hp, int _ac, int _xp, int _str,
   con = _con;
   wis = _wis;
   cha = _cha;
-  updateCount();
 }
 entity::~entity() {}
 

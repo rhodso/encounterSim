@@ -27,6 +27,8 @@ class entity {
     return initiative < other.initiative;
   }
 
+  
+
   // Getters and Setters
   int getID();
   int getTeam();
