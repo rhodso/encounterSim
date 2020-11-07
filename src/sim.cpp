@@ -72,7 +72,6 @@ int sim::doEncounter() {
 
   // Finshed setting up teams
   debugger::log("entityList size = " + std::to_string(entityList.size()));
-
   debugger::log("teams = " + std::to_string(teams.size() + 1));
 
   // Roll initiative to determine turn order
@@ -84,24 +83,33 @@ int sim::doEncounter() {
     // Check for win
 
     // Get number of teams
-    int teamsLeft = teams.size();
+    int teamsLeft = teams.size() + 1;
+    debugger::log("Teams size is " + std::to_string(teams.size()));
 
     // For each team, determine if entire team is dead
     for (std::vector<entity *> team : teams) {
+      debugger::log("Started checking next team");
       bool isDead = true;
       for (entity *e : team) {
+        debugger::log("Started checking next entity");
         // For each entity in team, determine if dead
         if (e->getHp() > 0) {
+          debugger::log("Entity is not dead as getHP() > 0");
           // if not dead, then team can still win
           isDead = false;
           break;
+        } else {
+          debugger::log("Entity is dead as getHP() <= 0");
         }
       }
+      debugger::log("Finished checking team");
       if (isDead) {
         // If dead then decrement number of teams by 1
+        debugger::log("isDead is true, reducing teamsLeft by 1");
         teamsLeft--;
       }
     }
+    debugger::log("Finished checking all teams");
     if (teamsLeft == 1) {
       // Need to find winner
       for (std::vector<entity *> team : teams) {

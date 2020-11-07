@@ -44,7 +44,13 @@ entity::entity(int _team, int _cr, int _hp, int _ac, int _xp, int _str,
 }
 entity::~entity() {}
 
+void entity::updateCount() {
+  this->id = count;
+  count++;
+}
+
 // Getters and Setters
+int entity::getID() { return id; }
 int entity::getTeam() { return team; }
 int entity::getCr() { return cr; }
 int entity::getHp() { return hp; }
@@ -68,6 +74,7 @@ void entity::setWis(int _wis) { wis = _wis; }
 void entity::setCha(int _cha) { cha = _cha; }
 
 // Other methods
+std::string entity::getID_S() { return std::to_string(id); }
 void entity::rollInitiative() { initiative = roll::_rtd(1, 20); }
 void entity::addAction(action _a) { actions.push_back(_a); }
 int entity::rollHP(int _diceToRoll, int _diceType, int _modifier) {

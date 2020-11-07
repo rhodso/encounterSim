@@ -19,12 +19,16 @@ class entity {
          int _con, int _wis, int _cha);
   ~entity();
 
+  // Count
+  void updateCount();
+
   // Operators
   bool operator<(const entity &other) const {
     return initiative < other.initiative;
   }
 
   // Getters and Setters
+  int getID();
   int getTeam();
   int getInitiative();
   int getCr();
@@ -49,6 +53,7 @@ class entity {
   void setCha(int _cha);
 
   // Other methods
+  std::string getID_S();
   void rollInitiative();
   void addAction(action _a);
   int rollHP(int _diceToRoll, int _diceType, int _modifier);
@@ -56,6 +61,7 @@ class entity {
 
  private:
   // Variables
+  int id;
   int team;  // members of the same team won't attack eachother
   int initiative;
   int cr;
@@ -68,5 +74,8 @@ class entity {
   int wis;
   int cha;
   std::vector<action> actions;
+
+  // EntityCount
+  inline static int count = 0;
 };
 #endif
