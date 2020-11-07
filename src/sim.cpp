@@ -89,6 +89,46 @@ void sim::rollInitiative() {
 
   debugger::log("Finished rolling intiative");
 }
+int sim::winCheck() {
+  debugger::log("Check if anyone's won");
+  // Check for win
+
+  // Get number of teams
+  int teamsLeft = teams.size();
+  debugger::log("Teams size is " + std::to_string(teams.size()));
+
+  // For each team, determine if entire team is dead
+  for (std::vector<entity *> team : teams) {
+    debugger::log("Started checking next team");
+    bool isDead = true;
+    for (entity *e : team) {
+      debugger::log("Started checking next entity");
+      debugger::log("This entity's ID is " + e->getID_S());
+      // For each entity in team, determine if dead
+      if (e->getHp() > 0) {
+        debugger::log("Entity is not dead as hp is " +
+                      std::to_string(e->getHp()));
+        // if not dead, then team can still win
+        isDead = false;
+        break;
+      } else {
+        debugger::log("Entity is dead as getHP() <= 0");
+      }
+    }
+    debugger::log("Finished checking team");
+    if (isDead) {
+      // If dead then decrement number of teams by 1
+      debugger::log("isDead is true, reducing teamsLeft by 1");
+      teamsLeft -= 1;
+
+    } else {
+      debugger::log("isDead is false");
+    }
+  }
+  debugger::log("Finished checking all teams. TeamsLeft is " +
+                std::to_string(teamsLeft));
+  return teamsLeft;
+}
 int sim::doEncounter() {
   // start encounter
   debugger::log("Started encounter");
@@ -117,44 +157,9 @@ int sim::doEncounter() {
   debugger::log("Finished listing turn order");
 
   // Sim loop
+  turn = 0;
   while (teamWon == -1) {
-    debugger::log("Check if anyone's won");
-    // Check for win
-
-    // Get number of teams
-    int teamsLeft = teams.size();
-    debugger::log("Teams size is " + std::to_string(teams.size()));
-
-    // For each team, determine if entire team is dead
-    for (std::vector<entity *> team : teams) {
-      debugger::log("Started checking next team");
-      bool isDead = true;
-      for (entity *e : team) {
-        debugger::log("Started checking next entity");
-        debugger::log("This entity's ID is " + e->getID_S());
-        // For each entity in team, determine if dead
-        if (e->getHp() > 0) {
-          debugger::log("Entity is not dead as hp is " +
-                        std::to_string(e->getHp()));
-          // if not dead, then team can still win
-          isDead = false;
-          break;
-        } else {
-          debugger::log("Entity is dead as getHP() <= 0");
-        }
-      }
-      debugger::log("Finished checking team");
-      if (isDead) {
-        // If dead then decrement number of teams by 1
-        debugger::log("isDead is true, reducing teamsLeft by 1");
-        teamsLeft -= 1;
-
-      } else {
-        debugger::log("isDead is false");
-      }
-    }
-    debugger::log("Finished checking all teams. TeamsLeft is " +
-                  std::to_string(teamsLeft));
+    int teamsLeft = winCheck();
     if (teamsLeft == 1) {
       // Need to find winner
       for (std::vector<entity *> team : teams) {
@@ -175,13 +180,17 @@ int sim::doEncounter() {
     } else {
       debugger::log("They haven't, calculating damage");
       // Do damage
-      for (entity *e : entityList) {
-        if (e->getHp() > 0) {
-          e->attack(teams);
-        }
+      if (turn == entityList.size() - 1) {
+        turn = 0;
+      } else {
+        turn++;
+      }
+      if (entityList[turn]->getHp() > 0) {
+        entityList[turn]->attack(teams);
       }
     }
   }
+
   // This shouldn't happen, but in case it does then it's here to prevent the
   // bad things from happening
   return -1;

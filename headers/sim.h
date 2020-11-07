@@ -29,11 +29,13 @@ class sim {
   void addToEntityList(entity* _e);
   void rollInitiative();
   int doEncounter();
+  int winCheck();
 
  private:
   // Variables
   std::vector<entity*> entityList;
   std::vector<std::vector<entity*>> teams;
   int teamWon = -1;
+  int turn;
 };
 #endif
