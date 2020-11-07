@@ -99,7 +99,7 @@ int sim::doEncounter() {
   // Roll initiative to determine turn order
   rollInitiative();
 
-  debugger::setDebug(true);
+  // debugger::setDebug(true);
 
   debugger::log("Listing turn order");
   for (entity *e : entityList) {
@@ -114,7 +114,7 @@ int sim::doEncounter() {
     // Check for win
 
     // Get number of teams
-    int teamsLeft = teams.size() + 1;
+    int teamsLeft = teams.size();
     debugger::log("Teams size is " + std::to_string(teams.size()));
 
     // For each team, determine if entire team is dead
@@ -140,6 +140,7 @@ int sim::doEncounter() {
         // If dead then decrement number of teams by 1
         debugger::log("isDead is true, reducing teamsLeft by 1");
         teamsLeft -= 1;
+
       } else {
         debugger::log("isDead is false");
       }
