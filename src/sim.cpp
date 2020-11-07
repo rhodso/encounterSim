@@ -27,22 +27,38 @@ void sim::setupTeams() {
   int numberOfTeams = -1;
   for (entity *e : entityList) {
     if (numberOfTeams < e->getTeam()) {
-      debugger::log("Number of teams set to " +
-                    std::to_string(e->getTeam() + 1));
+      debugger::log("Highest team count is " + std::to_string(e->getTeam()));
       numberOfTeams = e->getTeam();
     }
   }
 
+  debugger::log("Since team numbering starts at 0, there are " +
+                std::to_string(numberOfTeams + 1) + " teams");
+
   // Add teams to vector
-  for (int i = 0; i < numberOfTeams; i++) {
+  int count = 0;
+  debugger::log("Adding empty std::vector<entity*> to teams");
+  for (int i = 0; i < numberOfTeams + 1; i++) {
+    debugger::log("Count is " + std::to_string(count));
     std::vector<entity *> tmp;
     teams.push_back(tmp);
+    count++;
   }
 
   // Sort entities into team vector
   for (entity *e : entityList) {
+    debugger::log("Entity ID is " + e->getID_S() + ", team is " +
+                  std::to_string(e->getTeam()));
     teams[e->getTeam()].push_back(e);
+    debugger::log("Entity " + e->getID_S() + " sorted into team " +
+                  std::to_string(e->getTeam()));
   }
+
+  debugger::log("Listing size of each team");
+  for (std::vector<entity *> team : teams) {
+    debugger::log("Team size is " + std::to_string(team.size()));
+  }
+  debugger::log("Finished Listing size of each team");
 
   debugger::log("Finished buidling teams");
 }
@@ -76,7 +92,8 @@ int sim::doEncounter() {
 
   debugger::log("Listing entities in entityList by ID, then team");
   for (entity *e : entityList) {
-    debugger::log(e->getID_S() + " team is " + std::to_string(e->getTeam()));
+    debugger::log("Entity ID is " + e->getID_S() + ", team is " +
+                  std::to_string(e->getTeam()));
   }
   debugger::log("Finished listing entities");
 
