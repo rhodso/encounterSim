@@ -2,6 +2,7 @@
 
 int main() {
   srand(time(NULL));  // Seed the RNG
+
   debugger::setDebug(true);
   debugger::logIgnore("Starting...");
   // create sim

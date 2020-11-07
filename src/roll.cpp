@@ -37,10 +37,10 @@ int roll::rtd() {
                 " diceType = " + std::to_string(diceType) +
                 " modifier = " + std::to_string(modifier));
   for (int i = 0; i < diceToRoll; i++) {  // Add rolls to result sequentially
-    if (diceType = 0) {
+    if (diceType == 0) {
       debugger::log("diceType is 0, returning 0");
       return 0 + modifier;
-    } else if (diceType = 1) {
+    } else if (diceType == 1) {
       debugger::log("diceType is 1, returning 0");
       return 0 + modifier;
     } else {
