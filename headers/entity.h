@@ -27,8 +27,6 @@ class entity {
     return initiative < other.initiative;
   }
 
-  
-
   // Getters and Setters
   int getID();
   int getTeam();
@@ -57,7 +55,7 @@ class entity {
   // Other methods
   std::string getID_S();
   void rollInitiative();
-  void addAction(action _a);
+  void addAction(action *_a);
   int rollHP(int _diceToRoll, int _diceType, int _modifier);
   void attack(std::vector<std::vector<entity *>> teams);
 
@@ -75,7 +73,7 @@ class entity {
   int con;
   int wis;
   int cha;
-  std::vector<action> actions;
+  std::vector<action *> actions;
 
   // EntityCount
   inline static int count = 0;

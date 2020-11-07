@@ -79,7 +79,7 @@ void entity::setCha(int _cha) { cha = _cha; }
 // Other methods
 std::string entity::getID_S() { return std::to_string(id); }
 void entity::rollInitiative() { initiative = roll::_rtd(1, 20); }
-void entity::addAction(action _a) { actions.push_back(_a); }
+void entity::addAction(action* _a) { actions.push_back(_a); }
 int entity::rollHP(int _diceToRoll, int _diceType, int _modifier) {
   debugger::log("Rolling to hit");
   return roll::_rtd(_diceToRoll, _diceType, _modifier);
@@ -95,7 +95,6 @@ void entity::attack(std::vector<std::vector<entity*>> teams) {
       continue;
     }
     if (t[0]->getTeam() == this->getTeam()) {
-      debugger::log("Team skipped due to it being the same team");
       continue;
     } else {  // Else add to a list of targets
       for (entity* e : t) {
@@ -123,15 +122,19 @@ void entity::attack(std::vector<std::vector<entity*>> teams) {
   }
 
   debugger::log("Target found, team " + std::to_string(target->getTeam()));
+  debugger::log("Getting action to use");
   // Get a list of valid actions
   std::vector<action*> validActions;
-  for (action a : actions) {
-    if (a.getUseCount() == 0) {
+  for (action* a : actions) {
+    if (a->getUseCount() == 0) {
       continue;
     } else {
-      validActions.push_back(&a);
+      validActions.push_back(a);
     }
   }
+
+  debugger::log("Finished getting actions");
+  debugger::log("validActions size is " + std::to_string(validActions.size()));
 
   // Select action
   action* selectedAction;

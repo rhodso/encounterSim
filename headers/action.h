@@ -11,6 +11,7 @@ class action {
   // Constructor and Destructor
   action();
   action(roll _hit, roll _damage);
+  action(roll _hit, roll _damage, int _useCount);
   ~action();
 
   // Getters and Setters

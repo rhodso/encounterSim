@@ -90,13 +90,6 @@ int sim::doEncounter() {
   debugger::log("entityList size = " + std::to_string(entityList.size()));
   debugger::log("teams = " + std::to_string(teams.size()));
 
-  debugger::log("Listing entities in entityList by ID, then team");
-  for (entity *e : entityList) {
-    debugger::log("Entity ID is " + e->getID_S() + ", team is " +
-                  std::to_string(e->getTeam()));
-  }
-  debugger::log("Finished listing entities");
-
   // Stop combat if less than 2 teams are detected
   if (teams.size() < 2) {
     debugger::log("Teams size is less than 2, no combat needs to take place");
@@ -105,6 +98,15 @@ int sim::doEncounter() {
 
   // Roll initiative to determine turn order
   rollInitiative();
+
+  debugger::setDebug(true);
+
+  debugger::log("Listing turn order");
+  for (entity *e : entityList) {
+    debugger::log("Entity ID is " + e->getID_S() + ", team is " +
+                  std::to_string(e->getTeam()));
+  }
+  debugger::log("Finished listing turn order");
 
   // Sim loop
   while (teamWon == -1) {
@@ -124,7 +126,8 @@ int sim::doEncounter() {
         debugger::log("This entity's ID is " + e->getID_S());
         // For each entity in team, determine if dead
         if (e->getHp() > 0) {
-          debugger::log("Entity is not dead as getHP() > 0");
+          debugger::log("Entity is not dead as hp is " +
+                        std::to_string(e->getHp()));
           // if not dead, then team can still win
           isDead = false;
           break;
@@ -137,6 +140,8 @@ int sim::doEncounter() {
         // If dead then decrement number of teams by 1
         debugger::log("isDead is true, reducing teamsLeft by 1");
         teamsLeft--;
+      } else {
+        debugger::log("isDead is false");
       }
     }
     debugger::log("Finished checking all teams");

@@ -8,6 +8,12 @@ action::action() {}
 action::action(roll _hit, roll _damage) {
   hit = _hit;
   damage = _damage;
+  useCount = 9999;
+}
+action::action(roll _hit, roll _damage, int _useCount) {
+  hit = _hit;
+  damage = _damage;
+  useCount = _useCount;
 }
 action::~action() {}
 
