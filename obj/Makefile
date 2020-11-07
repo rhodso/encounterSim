@@ -1,5 +1,5 @@
 encounterSim:	main.o roll.o action.o entity.o debugger.o sim.o
-	g++ -o ../encounterSim -I../headers main.o roll.o action.o entity.o debugger.o sim.o
+	g++ -o ../encounterSim -I../headers main.o roll.o action.o entity.o debugger.o sim.o -pthread
 
 main.o:	../src/main.cpp
 	g++ -c ../src/main.cpp -I../headers
