@@ -139,12 +139,13 @@ int sim::doEncounter() {
       if (isDead) {
         // If dead then decrement number of teams by 1
         debugger::log("isDead is true, reducing teamsLeft by 1");
-        teamsLeft--;
+        teamsLeft -= 1;
       } else {
         debugger::log("isDead is false");
       }
     }
-    debugger::log("Finished checking all teams");
+    debugger::log("Finished checking all teams. TeamsLeft is " +
+                  std::to_string(teamsLeft));
     if (teamsLeft == 1) {
       // Need to find winner
       for (std::vector<entity *> team : teams) {

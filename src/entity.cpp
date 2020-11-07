@@ -85,7 +85,8 @@ int entity::rollHP(int _diceToRoll, int _diceType, int _modifier) {
   return roll::_rtd(_diceToRoll, _diceType, _modifier);
 }
 void entity::attack(std::vector<std::vector<entity*>> teams) {
-  debugger::log("I am on team " + std::to_string(this->getTeam()));
+  debugger::log("I am entity " + std::to_string(id) + ", I am on team " +
+                std::to_string(this->getTeam()));
   std::vector<entity*> targets;
   // For all the teams
   for (std::vector<entity*> t : teams) {
@@ -138,21 +139,28 @@ void entity::attack(std::vector<std::vector<entity*>> teams) {
 
   // Select action
   action* selectedAction;
-  if (actions.size() < 2) {
+  if (validActions.size() < 2) {
+    // Only 1 action available
+    debugger::log("validActions < 2, choosing the first action");
     selectedAction = validActions[0];
   } else {
-    selectedAction = validActions[roll::_rtd(1, validActions.size())];
+    // Select an action at random
+    debugger::log("validActions is > 1, rolling to determine selectedAction");
+    selectedAction = validActions[roll::_rtd(1, validActions.size()) - 1];
   }
-  // Select an action at random
+
   // selectedAction->decrementUseCount();
   debugger::log("Action selected");
-
   // Roll to hit
+  debugger::log("I need " + std::to_string(target->getAc()) + " to hit");
+
   if (selectedAction->rollHit() >= target->getAc()) {
     debugger::log("Attack hits, rolling damage");
     int dmg = selectedAction->rollDamage();
     debugger::log("Attack does " + std::to_string(dmg));
     target->setHp(target->getHp() - dmg);
+    debugger::log("Target (" + target->getID_S() + ")'s hp is " +
+                  std::to_string(target->getHp()));
   } else {
     debugger::log("Attack misses");
   }

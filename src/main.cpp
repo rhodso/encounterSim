@@ -11,9 +11,9 @@ int main() {
   // p1 - me
   p1 = entity(0, 1, 18, 11);
   p1.setTeam(0);
-  p1.addAction(new action(roll(1, 20), roll(1, 8, +2)));
-  p1.addAction(new action(roll(1, 20), roll(1, 8, +2)));
-  p1.addAction(new action(roll(1, 20), roll(1, 4, +2)));
+  p1.addAction(new action(roll(1, 20), roll(1, 8)));
+  p1.addAction(new action(roll(1, 20), roll(1, 8)));
+  p1.addAction(new action(roll(1, 20), roll(1, 4)));
   p1.addAction(new action(roll(1, 20), roll(1, 10, +5)));
   s.addToEntityList(&p1);
 

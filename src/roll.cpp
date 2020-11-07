@@ -22,7 +22,13 @@ roll::~roll() {}
 // Getters and Setters
 int roll::getDiceToRoll() { return diceToRoll; }
 int roll::getDiceType() { return diceType; }
-int roll::getModifier() { return modifier; }
+int roll::getModifier() {
+  try {
+    return modifier;
+  } catch (std::exception e) {
+    return 0;
+  }
+}
 
 void roll::setDiceToRoll(int _diceToRoll) { diceToRoll = _diceToRoll; }
 void roll::setDiceType(int _diceType) { diceType = _diceType; }
@@ -30,8 +36,8 @@ void roll::setModifier(int _modifier) { modifier = _modifier; }
 
 // Other methods
 int roll::rtd() {
-  // Create number to store the result
   int result = 0;
+  // Create number to store the result
   debugger::log("Rolling...");
   debugger::log("diceToRoll = " + std::to_string(diceToRoll) +
                 " diceType = " + std::to_string(diceType) +

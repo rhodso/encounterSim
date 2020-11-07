@@ -28,10 +28,16 @@ void action::setDamage(roll _damage) { damage = _damage; }
 // Other methods
 void action::decrementUseCount() { useCount--; }
 int action::rollHit() {
-  debugger::log("Rolling to hit");
+  debugger::log(
+      "Rolling to hit stats = " + std::to_string(hit.getDiceToRoll()) + " " +
+      std::to_string(hit.getDiceType()) + " " +
+      std::to_string(hit.getModifier()));
   return hit.rtd();
 }
 int action::rollDamage() {
-  debugger::log("Rolling damage");
+  debugger::log(
+      "Rolling to hit stats = " + std::to_string(damage.getDiceToRoll()) + " " +
+      std::to_string(damage.getDiceType()) + " " +
+      std::to_string(damage.getModifier()));
   return damage.rtd();
 }
