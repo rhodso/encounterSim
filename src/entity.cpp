@@ -8,11 +8,11 @@ entity::entity() {
   // Base constructor is always called, update count here
   updateCount();
 }
-entity::entity(int _team, int _cr, int _hp, int _ac) {
+entity::entity(int _team, int _hp, int _ac) {
   team = _team;
-  cr = _cr;
   hp = _hp;
   ac = _ac;
+  cr = 0;
   xp = 0;
   str = 0;
   dex = 0;
@@ -20,11 +20,23 @@ entity::entity(int _team, int _cr, int _hp, int _ac) {
   wis = 0;
   cha = 0;
 }
-entity::entity(int _team, int _cr, int _hp, int _ac, int _xp) {
+entity::entity(int _team, int _hp, int _ac, int _cr) {
   team = _team;
-  cr = _cr;
   hp = _hp;
   ac = _ac;
+  cr = _cr;
+  xp = 0;
+  str = 0;
+  dex = 0;
+  con = 0;
+  wis = 0;
+  cha = 0;
+}
+entity::entity(int _team, int _hp, int _ac, int _cr, int _xp) {
+  team = _team;
+  hp = _hp;
+  ac = _ac;
+  cr = _cr;
   xp = _xp;
   str = 0;
   dex = 0;
@@ -32,12 +44,12 @@ entity::entity(int _team, int _cr, int _hp, int _ac, int _xp) {
   wis = 0;
   cha = 0;
 }
-entity::entity(int _team, int _cr, int _hp, int _ac, int _xp, int _str,
+entity::entity(int _team, int _hp, int _ac, int _cr, int _xp, int _str,
                int _dex, int _con, int _wis, int _cha) {
   team = _team;
-  cr = _cr;
   hp = _hp;
   ac = _ac;
+  cr = _cr;
   xp = _xp;
   str = _str;
   dex = _dex;

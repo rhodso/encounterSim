@@ -13,9 +13,10 @@ class entity {
  public:
   // Constructor and Destructor
   entity();
-  entity(int _team, int _cr, int _hp, int _ac);
-  entity(int _team, int _cr, int _hp, int _ac, int _xp);
-  entity(int _team, int _cr, int _hp, int _ac, int _xp, int _str, int _dex,
+  entity(int _team, int _hp, int _ac);
+  entity(int _team, int _hp, int _ac, int _cr);
+  entity(int _team, int _hp, int _ac, int _cr, int _xp);
+  entity(int _team, int _hp, int _ac, int _cr, int _xp, int _str, int _dex,
          int _con, int _wis, int _cha);
   ~entity();
 
