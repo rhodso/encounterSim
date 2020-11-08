@@ -8,9 +8,6 @@
 
 std::mutex mtx;
 
-entity p1;
-entity p11;
-entity p2;
 sim s;
 int wins;
 std::vector<entity> entityList;
