@@ -45,27 +45,16 @@ int main() {
 
   // p1 - me
   p1 = entity(0, 1, 18, 11);
-  p1.setTeam(0);
   p1.addAction(new action(roll(1, 20), roll(1, 8)));
   p1.addAction(new action(roll(1, 20), roll(1, 8)));
   p1.addAction(new action(roll(1, 20), roll(1, 4)));
   p1.addAction(new action(roll(1, 20), roll(1, 10, +5)));
   entityList.push_back(p1);
-  entityList.push_back(p1);
-  entityList.push_back(p1);
-  entityList.push_back(p1);
-  entityList.push_back(p1);
-
-  // p1 - me
 
   // p2 - fire snake
   p2 = entity(1, 2, 22, 14, 200);
-  p2.setTeam(1);
   p2.addAction(new action(roll(1, 20), roll(1, 4, 1)));
   p2.addAction(new action(roll(1, 20), roll(1, 4, 1)));
-  entityList.push_back(p2);
-  entityList.push_back(p2);
-  entityList.push_back(p2);
   entityList.push_back(p2);
 
   debugger::logIgnore("Starting encounter simulation...");
